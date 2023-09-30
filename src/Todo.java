@@ -19,7 +19,7 @@ public class Todo {
      * Add new todo to todo list
      *
      * @param todo new todo to be added to todo list
-     * @return
+     * @return {@code true} or {@code false}
      */
     public static boolean addTodo(String todo) {
         if (!todoAlreadyExist(todo)) {
@@ -37,7 +37,7 @@ public class Todo {
     /**
      * Remove an existing todo from todo list using todo index.
      * @param todoIndex todo index in todo list
-     * @return {@link true} or {@link false}
+     * @return {@code true} or {@code false}
      */
     public static boolean removeTodo(int todoIndex) {
         if (todoIndex > 0) {
@@ -53,7 +53,7 @@ public class Todo {
      * Marks a todo completed
      *
      * @param todoIndex todo index in todo list
-     * @return {@link true} or {@link false}
+     * @return {@code true} or {@code false}
      */
     public static boolean markTodoCompleted(int todoIndex) {
         if (todoIndex >= 0) {
@@ -104,7 +104,7 @@ public class Todo {
      * Checks if a todo already exist in todo list
      *
      * @param todo todo to check
-     * @return {@link true} if todo already exist in todos otherwise {@link false}
+     * @return {@code true} if todo already exist in todos otherwise {@code false}
      */
     public static boolean todoAlreadyExist(String todo) {
         if (!todo.isEmpty()) {
