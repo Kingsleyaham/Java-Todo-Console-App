@@ -36,6 +36,7 @@ public class Todo {
 
     /**
      * Remove an existing todo from todo list using todo index.
+     *
      * @param todoIndex todo index in todo list
      * @return {@code true} or {@code false}
      */
