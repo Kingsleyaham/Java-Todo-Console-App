@@ -111,11 +111,12 @@ public class Command {
         if (!username.isEmpty()) {
             System.out.printf("%nWelcome %s to our Todo Console App with Complete Todo Functionality\n\n", username);
         } else {
-           welcomeUser();
+            welcomeUser();
         }
     }
 
     private static void exitTodoApp() {
-        throw new RuntimeException("todo app stopped abruptly");
+        System.out.println("Thanks for using our todo app");
+        System.exit(2);
     }
 }
