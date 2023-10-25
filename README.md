@@ -2,19 +2,13 @@
 
 This is a working solution of a todo console app. is has the complete functionality of a todo app. A user can add new todo, view todos, delete todo, mark todo completed and also clear completed todos.
 
-![Screenshot](./assets/screenshot.png)
-
 ## Usage
 
-- clone the repo and cd into the directory such that you are on `Todo Console App`
-- To run the solution, make sure you have [nodejs](https://nodejs.org) installed
-- use the following command terminal
+- clone the repo
+- open the code with any java IDE of your choice e.g InteliJ IDEA, eclipse e.t.c, 
+- compile and run
 
-```bash
-npm start
-or
-node index.js
-```
+**_Note: Java has to be installed on your computer before you are able to run the app_**
 
 **_Note: To add a new task to todos just type in the name of the task and press enter_**
 
@@ -22,65 +16,124 @@ node index.js
 
 - **`-help`** : list all help commands and their usage
 - **`-exit`** : terminate or exit application
-- **`-show`** : list todos
-- **`<todoName>-`** : deletes the todo
-- **`completed-`** : clear completed todos
-- **`completed <todoName>`** : mark the selected todo completed
+- **`show --all`** : list todos
+- **`show --active`** : list all active todos
+- **`show --completed`** : list all completed todos
+- **`remove- <todoID | todoName>`** : removes the todo e.g 'remove- 2' or 'remove- wash plate' deletes the todo from todo list
+- **`remove --completed-`** : remove completed todos
+- **`remove --all`** : remove all todos
+- **`completed- <todoID | todoName>`** : marks the todo completed e.g 'completed- 2' or 'completed- wash plate', marks the todo completed
 
 Watch a sample below
 
 ```bash
-➜  Todo Console App:(main) $ node index
-Welcome to a Todo Console App with Complete Todo Functionality
-Commands: '-help', '-exit', '-show', 'todoName-', 'completed TodoName', 'completed-'
+➜  Todo Console App:(main)
+Please Enter your username: kingsley
 
-Please enter a list item to add or a command to perform: -help
+Welcome kingsley to our Todo Console App with Complete Todo Functionality
 
-Usage:
+These are our lists of Commands and their Usage: 
 
--help                  list all help commands and their usage
--exit                  terminate or exit application
--show                  list all todos
-completed-             clear completed todos
-<todoName>-            delete the todo e.g 'watch movie-' removes the todo 'watch movie'
-completed <todoName>   mark the todo completed e.g 'completed watch movie' marks 'watch movie' as completed
+-help                	list all commands and their usage
+-exit                	terminate todo application in terminal
+show --all           	list all todos
+show --active        	list all active todos
+show --completed     	list all completed todos
+remove- <todoID | todoName> 	removes the todo e.g 'remove- 2' or 'remove- wash plate' deletes the todo from todo list
+remove --all         	remove all  todos
+remove --completed   	clear all completed todos
+completed- <todoID | todoName> 	marks the todo completed e.g 'completed- 2' or 'completed- wash plate', marks the todo completed
 
-Please enter a list item to add or a command to perform: wash plate
-Please enter a list item to add or a command to perform: watch television
-Please enter a list item to add or a command to perform: wash cloth
-Please enter a list item to add or a command to perform: completed wash plate
+Please enter a list item to add or a command to perform: wash play
+Todo added successfully
 
-'Wash Plate' marked completed
+Please enter a list item to add or a command to perform: watch movie
+Todo added successfully
 
-Please enter a list item to add or a command to perform: -show
-***********TODO LIST***********
-Wash Plate  |  Completed
-Watch Television  |  Active
-Wash Cloth  |  Active
--------------------------------
+Please enter a list item to add or a command to perform: play football
+Todo added successfully
 
-Please enter a list item to add or a command to perform: -view
-command does not exist
-Commands: '-help', '-exit', '-show', 'todoName-', 'completed TodoName', 'completed-'
+Please enter a list item to add or a command to perform: show --all
 
-Please enter a list item to add or a command to perform: programming
-Please enter a list item to add or a command to perform: completed programming
+***********************************************TODO LIST************************************************
 
-'Programming' marked completed
+S/N       	 ID             	 TASK                                              	 STATUS
 
-Please enter a list item to add or a command to perform: completed-
+1         	 433            	 WASH PLAY                                         	 ACTIVE
 
-completed todos cleared successfully
+2         	 395            	 WATCH MOVIE                                       	 ACTIVE
 
-Please enter a list item to add or a command to perform: -show
+3         	 164            	 PLAY FOOTBALL                                     	 ACTIVE
 
-***********TODO LIST***********
-Watch Television  |  Active
-Wash Cloth  |  Active
--------------------------------
+********************************************************************************************************
 
-Please enter a list item to add or a command to perform: -exit
+Please enter a list item to add or a command to perform: completed- 433
+todo marked completed
+Please enter a list item to add or a command to perform: show --all
 
-***Thanks for using our our todo app. We hope to see you next time***
+***********************************************TODO LIST************************************************
+
+S/N       	 ID             	 TASK                                              	 STATUS
+
+1         	 433            	 WASH PLAY                                         	 COMPLETED
+
+2         	 395            	 WATCH MOVIE                                       	 ACTIVE
+
+3         	 164            	 PLAY FOOTBALL                                     	 ACTIVE
+
+*******************************************************************************************************
+
+Please enter a list item to add or a command to perform: show --completed
+
+***********************************************TODO LIST**********************************************
+
+S/N       	 ID             	 TASK                                              	 STATUS
+
+1         	 433            	 WASH PLAY                                         	 COMPLETED
+
+*******************************************************************************************************
+
+Please enter a list item to add or a command to perform: show --active
+
+***********************************************TODO LIST**********************************************
+
+S/N       	 ID             	 TASK                                              	 STATUS
+
+1         	 395            	 WATCH MOVIE                                       	 ACTIVE
+
+2         	 164            	 PLAY FOOTBALL                                     	 ACTIVE
+
+*******************************************************************************************************
+
+Please enter a list item to add or a command to perform: remove- 433
+todo removed successfully
+Please enter a list item to add or a command to perform: show --all
+
+***********************************************TODO LIST**********************************************
+
+
+
+S/N       	 ID             	 TASK                                              	 STATUS
+
+1         	 395            	 WATCH MOVIE                                       	 ACTIVE
+
+2         	 164            	 PLAY FOOTBALL                                     	 ACTIVE
+
+*******************************************************************************************************
+
+Please enter a list item to add or a command to perform: remove- completed
+Invalid todo id or name provided
+Please enter a list item to add or a command to perform: remove --completed
+Please enter a list item to add or a command to perform: show --all
+
+***********************************************TODO LIST**********************************************
+
+S/N       	 ID             	 TASK                                              	 STATUS
+
+1         	 395            	 WATCH MOVIE                                       	 ACTIVE
+
+2         	 164            	 PLAY FOOTBALL                                     	 ACTIVE
+
+*******************************************************************************************************
 
 ```
