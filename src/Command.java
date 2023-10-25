@@ -1,4 +1,3 @@
-import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class Command {
@@ -67,7 +66,10 @@ public class Command {
             case "show --active" -> Todo.printTodos(false);
             case "show --completed" -> Todo.printTodos(true);
             case "remove --all" -> Todo.clearAllTodos();
-            case "remove --completed" -> Todo.clearCompletedTodos();
+            case "remove --completed" -> {
+                Todo.clearCompletedTodos();
+                System.out.println("Completed Todos cleared successfully");
+            }
             case "remove-" -> {
                 String substr = str.substring(7).trim();
                 try {
