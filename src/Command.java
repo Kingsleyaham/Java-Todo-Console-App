@@ -1,3 +1,4 @@
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class Command {
@@ -14,10 +15,10 @@ public class Command {
         System.out.printf("%-20s \t%s", "show --all", "list all todos\n");
         System.out.printf("%-20s \t%s", "show --active", "list all active todos\n");
         System.out.printf("%-20s \t%s", "show --completed", "list all completed todos\n");
-        System.out.printf("%-20s \t%s", "remove- <todoID>", "removes the todo e.g 'delete 2' deletes todo with id 2 from todo list\n");
+        System.out.printf("%-20s \t%s", "remove- <todoID | todoName>", "removes the todo e.g 'remove- 2' or 'remove- wash plate' deletes the todo from todo list\n");
         System.out.printf("%-20s \t%s", "remove --all", "remove all  todos\n");
         System.out.printf("%-20s \t%s", "remove --completed", "clear all completed todos\n");
-        System.out.printf("%-20s \t%s", "completed- <todoID | todoName>", "marks the todo completed e.g 'completed- 2' or 'completed- wash plate', marks todo with id 2 completed\n\n");
+        System.out.printf("%-20s \t%s", "completed- <todoID | todoName>", "marks the todo completed e.g 'completed- 2' or 'completed- wash plate', marks the todo completed\n\n");
     }
 
     /**
@@ -44,8 +45,9 @@ public class Command {
             }
 
             runTodoApp();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
+        }
+        catch (Exception e) {
+            System.out.println(ConsoleColors.RED + e.getMessage() + ConsoleColors.RESET);
         }
 
     }
@@ -69,36 +71,52 @@ public class Command {
             case "remove-" -> {
                 String substr = str.substring(7).trim();
                 try {
-                    int todoIndex = Todo.getIndex(substr);
-
-                    if (!Todo.removeTodo(todoIndex)) {
-                        todoIndex = Todo.getIndex(Integer.parseInt(substr));
+                    int todoIndex = Todo.getIndex(Integer.parseInt(substr));
+                    if (todoIndex >= 0) {
                         Todo.removeTodo(todoIndex);
+                        System.out.println("todo removed successfully");
+                    } else {
+                        throw new IndexOutOfBoundsException("Invalid todo id or name provided");
                     }
-                } catch (IndexOutOfBoundsException e) {
-                    System.out.println("An error occurred removing todo");
-                } finally {
-                    System.out.println("Todo removed successfully");
-                }
 
-                System.out.println("todo removed successfully");
+                } catch (NumberFormatException e) {
+                    int todoIndex = Todo.getIndex(substr);
+                    if (todoIndex >= 0) {
+                        Todo.removeTodo(todoIndex);
+                        System.out.println("todo removed successfully");
+                    } else {
+                        throw new IndexOutOfBoundsException("Invalid todo id or name provided");
+                    }
+
+                } catch (IndexOutOfBoundsException e) {
+                    System.out.println(ConsoleColors.RED +  e.getMessage() + ConsoleColors.RESET);
+                }
             }
             case "completed-" -> {
                 String substr = str.substring(10).trim();
                 try {
-                    int todoIndex = Todo.getIndex(substr);
+                    int todoIndex = Todo.getIndex(Integer.parseInt(substr));
 
-                    if (!Todo.markTodoCompleted(todoIndex)) {
-                        todoIndex = Todo.getIndex(Integer.parseInt(substr));
+                    if (todoIndex >= 0) {
                         Todo.markTodoCompleted(todoIndex);
+                        System.out.println("todo marked completed");
+                    } else {
+                        throw new IndexOutOfBoundsException("Invalid todo id or name provided");
                     }
+                } catch (NumberFormatException e) {
+                    int todoIndex = Todo.getIndex(substr);
+                    if (todoIndex >= 0) {
+                        Todo.removeTodo(todoIndex);
+                        System.out.println("todo marked completed");
+                    } else {
+                        throw new IndexOutOfBoundsException("Invalid todo id or name provided");
+                    }
+
                 } catch (IndexOutOfBoundsException e) {
-                    System.out.println("An error occurred marking todo completed");
-                } finally {
-                    System.out.println("todo marked completed");
+                    System.out.println(ConsoleColors.RED +  e.getMessage() + ConsoleColors.RESET);
                 }
             }
-            default -> System.out.println("invalid command");
+            default -> System.out.println(ConsoleColors.RED +  "invalid command" + ConsoleColors.RESET);
         }
 
         runTodoApp();
@@ -111,7 +129,7 @@ public class Command {
         if (!username.isEmpty()) {
             System.out.printf("%nWelcome %s to our Todo Console App with Complete Todo Functionality\n\n", username);
         } else {
-           welcomeUser();
+            welcomeUser();
         }
     }
 

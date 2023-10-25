@@ -38,16 +38,9 @@ public class Todo {
      * Remove an existing todo from todo list using todo index.
      *
      * @param todoIndex todo index in todo list
-     * @return {@code true} or {@code false}
      */
-    public static boolean removeTodo(int todoIndex) {
-        if (todoIndex > 0) {
-            todos.remove(todoIndex);
-
-            return true;
-        }
-
-        return false;
+    public static void removeTodo(int todoIndex) {
+        if (todoIndex >= 0)  todos.remove(todoIndex);
     }
 
     /**
